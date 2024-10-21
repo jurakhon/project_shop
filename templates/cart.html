@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ Shop - Your Cart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        /* Navigation */
+        nav {
+            background: #3498db;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Cart Section */
+        .cart-section {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            background: #eee;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .item-price {
+            font-size: 1.1rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .quantity-btn {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .continue-shopping:hover {
+            text-decoration: underline;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-cart h2 {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .summary-section {
+                width: 100%;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .item-image {
+                margin: 0 auto 15px;
+            }
+
+            .item-quantity {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">TJ Shop</a>
+            <div class="nav-links">
+                <a href="products">Products</a>
+                <a href="cart">Cart</a>
+                <a href="orders">Orders</a>
+                <a href="#account">Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Cart Section -->
+        <div class="cart-section">
+            <div class="cart-header">
+                <h2>Shopping Cart (3 items)</h2>
+            </div>
+
+            <div class="cart-items">
+                <!-- Cart Item 1 -->
+                <div class="cart-item">
+                    <div class="item-image"></div>
+                    <div class="item-details">
+                        <h3 class="item-title">Product Name</h3>
+                        <p class="item-price">$99.99</p>
+                        <div class="item-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger">Remove</button>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="cart-item">
+                    <div class="item-image"></div>
+                    <div class="item-details">
+                        <h3 class="item-title">Product Name</h3>
+                        <p class="item-price">$149.99</p>
+                        <div class="item-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" class="quantity-input" value="2" min="1">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger">Remove</button>
+                </div>
+            </div>
+
+            <!-- Empty Cart State (hidden by default) -->
+            <div class="empty-cart" style="display: none;">
+                <h2>Your cart is empty</h2>
+                <a href="products" class="btn btn-primary">Start Shopping</a>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2>Order Summary</h2>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$399.97</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>$9.99</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>$32.00</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Total</span>
+                <span>$441.96</span>
+            </div>
+            <button class="btn btn-primary">Proceed to Checkout</button>
+            <a href="products" class="continue-shopping">Continue Shopping</a>
+        </div>
+    </div>
+</body>
+</html>
